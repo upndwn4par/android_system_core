@@ -329,6 +329,7 @@ on post-fs-data
 
 on boot
     # basic network init
+    start sysinit
     ifup lo
     hostname localhost
     domainname localdomain
@@ -593,6 +594,12 @@ service bootanim /system/bin/bootanimation
 service installd /system/bin/installd
     class main
     socket installd stream 600 system system
+
+# sysinit (/system/etc/init.d)
+service sysinit /system/bin/sysinit
+    user root
+    oneshot
+    disabled
 
 #service flash_recovery /system/bin/install-recovery.sh
 #    class main
